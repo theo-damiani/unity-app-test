@@ -37,43 +37,4 @@ public class TextScript : MonoBehaviour
             }
         }
     }
-/*
-    LanguageToggle languageToggle;
-
-    private enum Language {
-        EN,
-        FR,
-        SIZE
-    }
-
-    private Language currentLanguage = Language.EN;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        languageToggle = FindObjectOfType<LanguageToggle>();
-        languageToggle.OnLanguageToggle += SwitchLanguage;
-
-        SetLanguage(currentLanguage);
-    }
-
-    private void SetLanguage(ActiveLanguage language){
-        switch (language) {
-            case Language.EN: {
-                tmpUI.text = EN;
-                break;
-            }
-            case Language.FR: {
-                tmpUI.text = FR;
-                break;
-            }
-        }
-    }
-
-    void SwitchLanguage() {
-        Language nextLanguage = (Language)(((int)currentLanguage+1) % (int)Language.SIZE);
-        SetLanguage(nextLanguage);
-        currentLanguage = nextLanguage;
-    }
-    */
 }
