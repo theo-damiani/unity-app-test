@@ -5,24 +5,43 @@ using TMPro;
 
 public class TextScript : MonoBehaviour
 {
+    [SerializeField]
+    LanguageToggle languageToggle;
+    
     [SerializeField] 
     private TextMeshProUGUI tmpUI;
 
     [SerializeField] 
     private string EN;
 
+    private string oldEN;
+
     [SerializeField] 
     private string FR;
 
-    LanguageToggle languageToggle;
+    private string oldFR;
 
+    void OnValidate() {
+        if (Application.isPlaying) {      
+            if (EN != oldEN) {
+                tmpUI.text = EN;
+                oldEN = EN;
+            }
+            if (FR != oldFR) {
+                tmpUI.text = FR;
+                oldFR = FR;
+            }
+        }
+    }
+    
     void Start()
     {
-        languageToggle = FindObjectOfType<LanguageToggle>();
-        languageToggle.OnLanguageToggle += SetLanguage;
+        if (languageToggle != null) {
+            languageToggle.OnLanguageToggle += SetLanguage;
 
-        // Set English as the default language.
-        SetLanguage(LanguageToggle.ActiveLanguage.EN);
+            // Set English as the default language.
+            SetLanguage(LanguageToggle.ActiveLanguage.EN);
+        }
     }
 
     private void SetLanguage(LanguageToggle.ActiveLanguage language){
@@ -37,43 +56,4 @@ public class TextScript : MonoBehaviour
             }
         }
     }
-/*
-    LanguageToggle languageToggle;
-
-    private enum Language {
-        EN,
-        FR,
-        SIZE
-    }
-
-    private Language currentLanguage = Language.EN;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        languageToggle = FindObjectOfType<LanguageToggle>();
-        languageToggle.OnLanguageToggle += SwitchLanguage;
-
-        SetLanguage(currentLanguage);
-    }
-
-    private void SetLanguage(ActiveLanguage language){
-        switch (language) {
-            case Language.EN: {
-                tmpUI.text = EN;
-                break;
-            }
-            case Language.FR: {
-                tmpUI.text = FR;
-                break;
-            }
-        }
-    }
-
-    void SwitchLanguage() {
-        Language nextLanguage = (Language)(((int)currentLanguage+1) % (int)Language.SIZE);
-        SetLanguage(nextLanguage);
-        currentLanguage = nextLanguage;
-    }
-    */
 }
