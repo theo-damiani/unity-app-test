@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
 public class TextScript : MonoBehaviour
 {
     [SerializeField]
@@ -12,25 +13,23 @@ public class TextScript : MonoBehaviour
     private TextMeshProUGUI tmpUI;
 
     [SerializeField] 
-    private string EN;
-
-    private string oldEN;
-
-    [SerializeField] 
     private string FR;
 
-    private string oldFR;
+    private string oldFR = "";
+
+    [SerializeField] 
+    private string EN;
+
+    private string oldEN = "";
 
     void OnValidate() {
-        if (Application.isPlaying) {      
-            if (EN != oldEN) {
-                tmpUI.text = EN;
-                oldEN = EN;
-            }
-            if (FR != oldFR) {
-                tmpUI.text = FR;
-                oldFR = FR;
-            }
+        if (FR != oldFR) {
+            tmpUI.text = FR;
+            oldFR = FR;
+        }
+        if (EN != oldEN) {
+            tmpUI.text = EN;
+            oldEN = EN;
         }
     }
     
